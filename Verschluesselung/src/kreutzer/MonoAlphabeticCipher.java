@@ -18,7 +18,8 @@ public class MonoAlphabeticCipher implements Cipher {
 		return secretAlphabet;
 	}
 	
-	protected void setSecretAlphabet(){
+	protected void setSecretAlphabet(String secretAlphabet){
+		secretAlphabet = secretAlphabet.toLowerCase();
 		this.secretAlphabet = secretAlphabet;
 	}
 	
@@ -27,15 +28,17 @@ public class MonoAlphabeticCipher implements Cipher {
 	*/
 	@Override
 	public String encrypt(String text){
+		String alphabet = "abcdefghijklmnopqrstuvwxyzŠšŸ§";
+		text = text.toLowerCase();
 		String verschluesselung = "";
-		for(int i = 0;i<= text.length();i++){
+		for(int i = 0;i< text.length();i++){
 			String textbuch = text.charAt(i) + "";
-			for(int j = 0;j<=secretAlphabet.length();j++){
-				String alphbuch = secretAlphabet.charAt(j) + "";
+			for(int j = 0;j<alphabet.length();j++){
+				String alphbuch = alphabet.charAt(j) + "";
 				if(textbuch.equals(alphbuch)){
-					verschluesselung += alphbuch; 
-					j=secretAlphabet.length()+1;
-				}else if(j>=secretAlphabet.length()){
+					verschluesselung += secretAlphabet.charAt(j); 
+					j=alphabet.length()+1;
+				}else if(j>=alphabet.length()-1){
 					verschluesselung += text.charAt(i);	
 				}
 			}
@@ -49,7 +52,23 @@ public class MonoAlphabeticCipher implements Cipher {
 	*/
 	@Override
 	public String decrypt(String text) {
-		return text;
+		String alphabet = "abcdefghijklmnopqrstuvwxyzŠšŸ§";
+		text = text.toLowerCase();
+		String entschluesselung = "";
+		for(int i = 0;i< text.length();i++){
+			String textbuch = text.charAt(i) + "";
+			for(int j = 0;j<alphabet.length();j++){
+				String secbuch = secretAlphabet.charAt(j) + "";
+				if(textbuch.equals(secbuch)){
+					entschluesselung += alphabet.charAt(j); 
+					j=secretAlphabet.length()+1;
+				}else if(j>=secretAlphabet.length()-1){
+					entschluesselung += text.charAt(i);	
+				}
+			}
+			
+		}
+		return entschluesselung;
 	}
 
 }
