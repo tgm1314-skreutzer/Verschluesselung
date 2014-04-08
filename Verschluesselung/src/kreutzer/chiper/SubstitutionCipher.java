@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kreutzer;
+package kreutzer.chiper;
 
 /**
  * @author sarahkreutzer

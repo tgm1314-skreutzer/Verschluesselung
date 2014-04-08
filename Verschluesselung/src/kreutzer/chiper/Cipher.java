@@ -1,4 +1,4 @@
-package kreutzer;
+package kreutzer.chiper;
 
 public interface Cipher {
 	public String encrypt(String text);

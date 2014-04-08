@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kreutzer;
+package kreutzer.chiper;
 
 /**
  * @author sarahkreutzer
@@ -18,8 +18,11 @@ public class MonoAlphabeticCipher implements Cipher {
 		return secretAlphabet;
 	}
 	
-	protected void setSecretAlphabet(String secretAlphabet){
+	protected void setSecretAlphabet(String secretAlphabet) throws IllegalArgumentException{
 		secretAlphabet = secretAlphabet.toLowerCase();
+		if(secretAlphabet.length() != 30){
+			throw new IllegalArgumentException("Fehler");
+		}
 		this.secretAlphabet = secretAlphabet;
 	}
 	
